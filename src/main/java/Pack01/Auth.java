@@ -31,6 +31,24 @@ public class Auth {
 		return false;
 	}
 	
+	public ResultSet selectQuestionList() {
+		String sql = "select * from multiple_question order by rand() limit 5;";
+		Connection conn = null;
+		ResultSet rs = null;
+		try {
+			conn = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			return rs;
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+	
+	
 	
 	public class DoTest {
 		
