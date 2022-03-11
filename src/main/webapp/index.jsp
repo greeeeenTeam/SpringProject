@@ -9,6 +9,6 @@
 
 <body>
 	<%=new Date()%>
-	<h2>ㅎㅇㅎㅇ</h2>
+	<h2>안녕</h2>
 	<a href="t1">링크1</a><br />
 </body>
