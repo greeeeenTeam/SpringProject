@@ -3,9 +3,8 @@ package Pack01;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
-public class Auth {
+public class Account {
 	public Boolean login(String name, String rrn) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

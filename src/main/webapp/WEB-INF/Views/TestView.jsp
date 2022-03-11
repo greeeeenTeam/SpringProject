@@ -46,12 +46,9 @@
 					<input type="submit" value="제출" onclick="alert('제출 완료:)')">
                	</div>
 	
-	
 	<% 	}
 	%>
-	
-				
-			
+
 			</fieldset>
 		</form>
 	
