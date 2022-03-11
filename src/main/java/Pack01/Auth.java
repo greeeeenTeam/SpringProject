@@ -14,8 +14,8 @@ public class Auth {
 			conn = ConnectionProvider.getConnection();
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setString(1, "김익한");
-			pstmt.setString(2, "950831");
+			pstmt.setString(1, name);
+			pstmt.setString(2, rrn);
 			int rs = pstmt.executeUpdate();
 
 			if(rs>=1)
@@ -26,12 +26,7 @@ public class Auth {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}finally {
-			try{
-	            if(pstmt!=null) pstmt.close();
-	            if(conn!=null) conn.close();
-	         }catch(SQLException se){
-	            System.out.println(se.getMessage());
-	         }
+			ConnectionProvider.close(null, pstmt, conn);
 		}
 		return false;
 	}
