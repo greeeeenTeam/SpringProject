@@ -50,9 +50,9 @@ public class Auth {
 	
 	
 	
-	public class DoTest {
+	 
 		
-		public Boolean insert(String lecture) {
+		public Boolean DoTest(String lecture) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			String sql = "INSERT INTO test values(?)";
@@ -77,5 +77,5 @@ public class Auth {
 		}
 		
 		
-	}
+	
 }
