@@ -67,4 +67,34 @@ public class Auth {
 		return null;
 	}
 	
+	
+	
+	 
+		
+		public Boolean DoTest(String lecture) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = "INSERT INTO test values(?)";
+			try {
+				conn = ConnectionProvider.getConnection();
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setString(1, lecture);
+				int rs = pstmt.executeUpdate();
+
+				if(rs>=1)
+				{
+					return true;
+				}
+			}catch (Exception e) {
+				// TODO: handle exception
+				System.out.println(e.getMessage());
+			}finally {
+				ConnectionProvider.close(null, pstmt, conn);
+			}
+			return false;
+		}
+		
+		
+	
 }
