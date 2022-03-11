@@ -7,6 +7,7 @@
 <title>시험 시작</title>
 </head>
 <body>
+   <% if(session.getAttribute("cn")==null) { %>
    <form method="post">
       <label for="user_name">수험자 이름</label>
       <input type="text" name="user_name">
@@ -14,5 +15,8 @@
       <input type="text" name="user_cn">
       <input type="submit">
    </form>
+	<%} else {%>
+	<script>location.href="/SpringProject/test"; </script>
+	<%} %>
 </body>
 </html>
