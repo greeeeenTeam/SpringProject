@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, java.text.*"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 	<head>
 		<title>메인 페이지</title>
@@ -21,7 +20,9 @@
 					<a href="test">
 						<input type = "button" value="시험보기">
 					</a>
-					<input type = "button" value="결과보기">
+					<a href="result">
+						<input type = "button" value="결과보기">
+					</a>
             	</div>
 			</fieldset>
 		</form>

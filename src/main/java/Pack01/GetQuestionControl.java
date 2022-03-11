@@ -15,4 +15,11 @@ public class GetQuestionControl {
 		model.addAttribute("questionList", dao.selectQuestionList());
 		return "TestView";
 	}
+	
+	@RequestMapping("/result")
+	String getResult(Model model) {
+		Auth dao = new Auth();
+		model.addAttribute("result", dao.selectResult());
+		return "ResultView";
+	}
 }
