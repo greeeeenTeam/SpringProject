@@ -21,7 +21,7 @@ public class StartCon {
 		if(test) {
 			System.out.println("db select");
 		}
-		StartDTO dto = new StartDTO(cn);
+		//StartDTO dto = new StartDTO(cn);
 		System.out.println("여기로감?");
 		return "examstartok";
 	}

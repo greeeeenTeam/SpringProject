@@ -10,7 +10,7 @@
 	<h1>???</h1>
 </body>
 <script>
+	
 	alert("시험 시작합니다.\n");
-	location.href="index.jsp";
 </script>
 </html>

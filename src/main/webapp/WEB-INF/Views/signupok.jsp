@@ -7,7 +7,11 @@
 <title>Insert title here</title>
 </head>
 <script>
-	alert("회원가입 되었습니다.\n");
+<%
+	String cn = (String)request.getAttribute("cn");
+%>
+	alert(${cn} + "회원가입 되었습니다.\n");
 	location.href="index.jsp";
+
 </script>
 </html>
