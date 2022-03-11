@@ -17,6 +17,4 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/WEB-INF/Views/" />
 	</mvc:view-resolvers>
-	<!-- 추가 설정 코드, t9는 controller거치지 않고 TigerView로 바로 가기-->
-	<mvc:view-controller path="/t9" view-name="TigerView"/>
 </beans>

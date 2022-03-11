@@ -3,12 +3,26 @@
 <%@ page import="java.util.*, java.text.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<head>
-<title>메인 페이지</title>
-</head>
+	<head>
+		<title>메인 페이지</title>
+	</head>
 
-<body>
-	<%=new Date()%>
-	<h2>안녕</h2>
-	<a href="t1">링크1</a><br />
-</body>
+	<body>
+		<%=new Date()%> <!-- 웹이 refresh되었는지 확인하기위한 용도  -->
+		<form>
+			<fieldset>
+				<div>
+					<h1 style="text-align:center;">동기愛 테스트</h1>
+				</div>
+				<div style="text-align:center;">
+					<img src="https://image.zdnet.co.kr/2020/12/29/865ab83c58f41968b5b066453c03388b.png" border="3" style="width : 700px; height: 500px;">
+				</div>
+				<div style="text-align:center;">
+					<a href="survey">
+						<input type = "button" value="시험보기">
+					</a>
+					<input type = "button" value="결과보기">
+            	</div>
+			</fieldset>
+		</form>
+	</body>

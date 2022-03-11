@@ -29,4 +29,26 @@ public class Auth {
       }
       return isCheck;
    }
+   
+   public Boolean login(String name, String rrn) {
+	   String sql = "INSERT INTO member values(?, ?, NULL, 0)";
+	   try {
+	         Connection conn = ConnectionProvider.getConnection();
+	         PreparedStatement pstmt = conn.prepareStatement(sql);
+
+	         pstmt.setString(1, "김익한");
+	         pstmt.setString(2, "950831");
+	         int rs = pstmt.executeUpdate();
+
+	         if(rs>=1)
+	         {
+	            return true;
+	         }
+
+	      }catch (Exception e) {
+	         // TODO: handle exception
+	         System.out.println(e.getMessage());
+	      }
+	      return false;
+   }
 }
