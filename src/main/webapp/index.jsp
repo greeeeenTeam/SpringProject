@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, java.text.*"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 	<head>
 		<title>메인 페이지</title>
@@ -18,8 +17,11 @@
 					<img src="https://image.zdnet.co.kr/2020/12/29/865ab83c58f41968b5b066453c03388b.png" border="3" style="width : 700px; height: 500px;">
 				</div>
 				<div style="text-align:center;">
-					<a href="survey">
-						<input type = "button" value="시험보기">
+					<a href="signup">
+						<input type = "button" value="계정생성">
+					</a>
+					<a href="cnlogin">
+					<input type = "button" value="시험보기">
 					</a>
 					<input type = "button" value="결과보기">
             	</div>
