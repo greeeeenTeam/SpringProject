@@ -22,4 +22,11 @@ public class GetQuestionControl {
 		model.addAttribute("result", dao.selectResult());
 		return "ResultView";
 	}
+	
+	@RequestMapping("/start")
+	String getAnswer(Model model) {
+		Auth dao = new Auth();
+		model.addAttribute("result", dao.selectResult());
+		return "ResultView";
+	}
 }

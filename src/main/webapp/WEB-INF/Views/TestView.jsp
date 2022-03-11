@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 	<body>
-	<form action="DoTest">
+	<form action="start">
 			<fieldset>
 				<div>
 					<h1 style="text-align:center;">Question</h1>
@@ -16,6 +16,7 @@
 	<h1>동기애 테스트 문제지<h1>
 	<%
 		ResultSet rs = (ResultSet) request.getAttribute("questionList");
+		int nameIdx = 1;
 		while (rs.next()) {
 			String question = rs.getString("question");
 			String ex_1 = rs.getString("ex_1");
@@ -27,31 +28,29 @@
 			<% out.println(question); %>
 	
 	<div style="text-align:center;">
-					<label><input type="radio" name="Answer1" value="Question1">
+					<label><input type="radio" name="answer<%= nameIdx%>"+ value="1">
                <% out.println(ex_1); %></label> <br>
 				</div>
 				<div style="text-align:center;">
-					<label><input type="radio" name="Answer2" value="Question2">
+					<label><input type="radio" name="answer<%= nameIdx%>" value="2">
                <% out.println(ex_2); %></label> <br>
 				</div>
 				<div style="text-align:center;">
-					<label><input type="radio" name="Answer3" value="Question3">
+					<label><input type="radio" name="answer<%= nameIdx%>" value="3">
                <% out.println(ex_3); %></label> <br>
 				</div>
 				<div style="text-align:center;">
-					<label><input type="radio" name="Answer4" value="Question4">
+					<label><input type="radio" name="answer<%= nameIdx%>" value="4">
                <% out.println(ex_4); %></label> <br>
 				</div>
-				<div style="text-align:center;">
+				
+	<% 	nameIdx = nameIdx+1;
+	} 
+		nameIdx = 1;
+	%>
+	<div style="text-align:center;">
 					<input type="submit" value="제출" onclick="alert('제출 완료:)')">
                	</div>
-	
-	
-	<% 	}
-	%>
-	
-				
-			
 			</fieldset>
 		</form>
 	
