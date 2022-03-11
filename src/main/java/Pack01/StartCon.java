@@ -22,7 +22,7 @@ public class StartCon {
 			System.out.println("db select");
 		}
 		StartDTO dto = new StartDTO(cn);
-		
+		System.out.println("여기로감?");
 		return "examstartok";
 	}
 	
@@ -30,10 +30,5 @@ public class StartCon {
 	   String func02() {
 	      System.out.println("시험시작.");
 	      return "cnlogin";
-	   }
-	@RequestMapping(value = "/questiontest", method = RequestMethod.GET)
-	   String func03() {
-	      System.out.println("시험시작.");
-	      return "questiontest";
 	   }
 }

@@ -42,8 +42,7 @@ public class ExamStart {
 			if(n>0){
 				HttpSession session = request.getSession();
 				session.setAttribute("cn", cn);
-				System.out.println(cn);
-				response.sendRedirect("questiontest");
+				response.sendRedirect("test");
 			}
 		}
 		catch(SQLException se){
