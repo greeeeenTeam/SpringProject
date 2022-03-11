@@ -1,10 +1,10 @@
 package Pack01;
 
-public class loginDTO {
+public class AccountDTO {
 	String name;
 	String rrn;
 	
-	public loginDTO(String name, String rrn) {
+	public AccountDTO(String name, String rrn) {
 		super();
 		this.name = name;
 		this.rrn = rrn;
