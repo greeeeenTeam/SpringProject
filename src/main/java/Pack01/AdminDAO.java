@@ -22,4 +22,50 @@ public class AdminDAO {
 		
 		return null;
 	}
+	
+	public static Boolean InsertProblem(String question, String ans_1, String ans_2, String ans_3, String ans_4, String answer) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "INSERT INTO multiple_question values(?, ?, ?, ?, ?, ?)";
+		
+		try {
+			conn = ConnectionProvider.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, question);
+			pstmt.setString(2, ans_1);
+			pstmt.setString(3, ans_2);
+			pstmt.setString(4, ans_3);
+			pstmt.setString(5, ans_4);
+			pstmt.setString(6, answer);
+			
+			int rs = pstmt.executeUpdate();
+			
+			if (rs >= 1) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionProvider.close(null, pstmt, conn);
+		}
+		return false;
+	}
+	
+	public static ResultSet ResultList() {
+		ResultSet rs = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "SELECT * FROM test_result";
+		
+		try {
+			conn = ConnectionProvider.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			return rs;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 }
