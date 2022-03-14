@@ -2,9 +2,23 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, java.text.*"%>
 
-	<head>
-		<title>메인 페이지</title>
-	</head>
+<head>
+<title>메인 페이지</title>
+<style>
+.test-button{
+	background-color: #ffffff;
+	width: 100px;
+	display: block;
+	margin-left:10px; 
+	margin-top:30px;
+	height: 70px;
+	line-height: 70px;
+	color: #0020f0;
+	font-size: 16px;
+	font-weight: 700;
+}
+</style>
+</head>
 
 	<body>
 		<%=new Date()%> <!-- 웹이 refresh되었는지 확인하기위한 용도  -->

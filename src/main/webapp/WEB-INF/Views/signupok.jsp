@@ -6,8 +6,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<script>
-	alert("회원가입 되었습니다.\n");
-	location.href="index.jsp";
-</script>
+<body>
+	<h1>
+		수험번호 : <%= (String)request.getAttribute("cn") %>
+	</h1>
+</body>
+
 </html>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>회원가입</title>
+<title>Insert title here</title>
 </head>
 <body>
    <form method="post">
