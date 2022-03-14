@@ -47,15 +47,14 @@ public class Account {
 		return null;
 	}
 	
-	public ResultSet selectResult() {
+	public ResultSet selectResult(String cn) {
 		String sql = "select pass, result from test_result where cn=?;";
 		Connection conn = null;
 		ResultSet rs = null;
-		int cn = 1008;
 		try {
 			conn = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, cn);
+			pstmt.setInt(1, Integer.parseInt(cn));
 			rs = pstmt.executeQuery();
 			return rs;
 			
@@ -65,35 +64,32 @@ public class Account {
 		}
 		return null;
 	}
-	
-	
-	
-	 
+
+	public Boolean DoTest(String cn, int pass, int count) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
 		
-		public Boolean DoTest(String lecture) {
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			String sql = "INSERT INTO test values(?)";
-			try {
-				conn = ConnectionProvider.getConnection();
-				pstmt = conn.prepareStatement(sql);
+		
+		String sql = "INSERT INTO test_result values(null,?,?,?)";
+		try {
+			conn = ConnectionProvider.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(cn));
+			pstmt.setInt(2,pass);
+			pstmt.setInt(3,count);
+			
+			int rs = pstmt.executeUpdate();
 
-				pstmt.setString(1, lecture);
-				int rs = pstmt.executeUpdate();
-
-				if(rs>=1)
-				{
-					return true;
-				}
-			}catch (Exception e) {
-				// TODO: handle exception
-				System.out.println(e.getMessage());
-			}finally {
-				ConnectionProvider.close(null, pstmt, conn);
+			if(rs>=1)
+			{
+				return true;
 			}
-			return false;
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}finally {
+			ConnectionProvider.close(null, pstmt, conn);
 		}
-		
-		
-	
+		return false;
+	}
 }

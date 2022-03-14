@@ -21,9 +21,12 @@
 						<input type = "button" value="계정생성">
 					</a>
 					<a href="cnlogin">
-					<input type = "button" value="시험보기">
+						<input type = "button" value="시험보기">
 					</a>
-					<input type = "button" value="결과보기">
+					<a href="result">
+						<input type = "button" value="결과보기">
+					</a>
+
             	</div>
 			</fieldset>
 		</form>
