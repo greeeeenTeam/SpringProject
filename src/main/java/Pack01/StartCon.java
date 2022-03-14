@@ -20,10 +20,10 @@ public class StartCon {
 		Boolean test = dao.login(cn, request, response);
 		if(test) {
 			System.out.println("db select");
-		}
+		} 
 		//StartDTO dto = new StartDTO(cn);
 		System.out.println("여기로감?");
-		return "examstartok";
+		return "findcn";
 	}
 	
 	@RequestMapping(value = "/cnlogin", method = RequestMethod.GET)

@@ -46,9 +46,9 @@ public class Account {
 			pstmt.setString(2, rrn);
 			
 			rs = pstmt.executeQuery();
-			cn = rs.getString("cn");
-			
-			
+			while(rs.next()) {
+				cn = rs.getString("cn");
+			}
 		}catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());

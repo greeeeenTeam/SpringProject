@@ -11,7 +11,8 @@ public class AccountCon {
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	String signup(
 			@RequestParam(value="user_name") String name,
-	        @RequestParam(value="user_rrn") String rrn) {
+	        @RequestParam(value="user_rrn") String rrn,
+	        Model model) {
 		System.out.println("signup");
 		Account dao = new Account();
 		
@@ -19,7 +20,10 @@ public class AccountCon {
 		if(test) {
 			System.out.println("db update");
 		}
-		//AccountDTO dto = new AccountDTO(name, rrn);
+		
+		String cn= dao.showrn(name,rrn);
+		model.addAttribute("cn", cn);
+		System.out.println(cn);
 		
 		return "signupok";
 	}
@@ -28,26 +32,26 @@ public class AccountCon {
 	   String func02() {
 	      System.out.println("접속함.");
 	      return "signup";
-	   }
-	
-	@RequestMapping(value = "/signupok", method = RequestMethod.POST)
-	String signupok(
+	}
+	@RequestMapping(value = "/findcn", method = RequestMethod.POST)
+	String test(
 			@RequestParam(value="user_name") String name,
 	        @RequestParam(value="user_rrn") String rrn,
 	        Model model) {
 		System.out.println("signup");
 		Account dao = new Account();
 		
-		//String test = dao.showrn(name, rrn);
 		String cn= dao.showrn(name,rrn);
 		model.addAttribute("cn", cn);
 		System.out.println(cn);
+		
 		return "signupok";
 	}
 	
-	@RequestMapping(value = "/signupok", method = RequestMethod.GET)
-	String func03() {
-		System.out.println("전송함.");
-		return "signupok";
+	@RequestMapping(value = "/findcn", method = RequestMethod.GET)
+	   String func03() {
+	      System.out.println("접속함.");
+	      return "findcn";
 	}
+	
 }
