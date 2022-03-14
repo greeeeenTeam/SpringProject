@@ -10,42 +10,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import Pack01.Account;
 
 @Controller
-public class TestRS {
+public class DoTestCon {
 	@RequestMapping("/DoTest")
-	String insertAnswer(Model model,HttpServletRequest request){
+	String insertAnswer(Model model,HttpServletRequest request,String checkAnswer){
 		String answer1 = request.getParameter("answer1");
 		String answer2 = request.getParameter("answer2");
 		String answer3 = request.getParameter("answer3");
 		String answer4 = request.getParameter("answer4");
 		String answer5 = request.getParameter("answer5");
-		String checkAnswer1 = request.getParameter("checkAnswer1");
-		String checkAnswer2 = request.getParameter("checkAnswer2");
-		String checkAnswer3 = request.getParameter("checkAnswer3");
-		String checkAnswer4 = request.getParameter("checkAnswer4");
-		String checkAnswer5 = request.getParameter("checkAnswer5");
+		String[] answerList = checkAnswer.split(",");
 		Account dao = new Account();
 		HttpSession session = request.getSession(); 
 		String cn =(String)session.getAttribute("cn");
 		int count = 0;
 		int pass = 0;
-
-		if (answer1.equals(checkAnswer1)) {
-			count++;
-		}
-		if (answer2.equals(checkAnswer2)) {
-			count ++;
-		}
-		if (answer3.equals(checkAnswer3)) {
-			count++;
-		}
-		if (answer4.equals(checkAnswer4)) {
-			count ++;
-		}
-		if (answer5.equals(checkAnswer5)) {
-			count++;
-		}
 		
-		System.out.println(count);
+		if (answer1.equals(answerList[0])) {
+			count++;
+		}
+		if (answer2.equals(answerList[1])) {
+			count ++;
+		}
+		if (answer3.equals(answerList[2])) {
+			count++;
+		}
+		if (answer4.equals(answerList[3])) {
+			count ++;
+		}
+		if (answer5.equals(answerList[4])) {
+			count++;
+		}
+
 		if(count>= 3) {
 			pass = 1;
 		}else {
@@ -53,8 +48,9 @@ public class TestRS {
 		}
 		Boolean test = dao.DoTest(cn, pass, count);
 		if(test) {
-			System.out.println("시험 완료!");
+			model.addAttribute("result", dao.selectResult(cn));
 		}
-		return null;
+		
+		return "ResultView";
 	}
 }

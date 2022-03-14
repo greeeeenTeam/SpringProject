@@ -47,15 +47,14 @@ public class Account {
 		return null;
 	}
 	
-	public ResultSet selectResult() {
+	public ResultSet selectResult(String cn) {
 		String sql = "select pass, result from test_result where cn=?;";
 		Connection conn = null;
 		ResultSet rs = null;
-		int cn = 1008;
 		try {
 			conn = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, cn);
+			pstmt.setInt(1, Integer.parseInt(cn));
 			rs = pstmt.executeQuery();
 			return rs;
 			

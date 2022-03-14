@@ -69,7 +69,6 @@
    			<%
 				ResultSet rs = (ResultSet) request.getAttribute("questionList");
    				int idx = 1;
-   				session.getAttribute("cn");	
 				while (rs.next()) {
 					String question = rs.getString("question");
 					String ex_1 = rs.getString("ex_1");
@@ -92,7 +91,7 @@
 	
 				<label><input type="radio" name="answer<%= idx%>"
 					value="4"> <% out.println(ex_4); %></label>
-				<input type="hidden" name="checkAnswer<%=idx %>" value=<%=answer %>>
+				<input type="hidden" name="checkAnswer" value=<%=answer %>>
 			</div>
 			<% idx++;}idx =1;%>
 			<div style="text-align: center;">

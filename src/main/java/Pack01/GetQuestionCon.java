@@ -1,5 +1,8 @@
 package Pack01;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import Pack01.Account;
 
 @Controller
-public class GetQuestionControl {
+public class GetQuestionCon {
 	@RequestMapping("/test")
 	String getQuestionList(Model model) {
 		Account dao = new Account();
@@ -17,9 +20,11 @@ public class GetQuestionControl {
 	}
 	
 	@RequestMapping("/result")
-	String getResult(Model model) {
+	String getResult(Model model,HttpServletRequest request) {
 		Account dao = new Account();
-		model.addAttribute("result", dao.selectResult());
+		HttpSession session = request.getSession(); 
+		String cn =(String)session.getAttribute("cn");
+		model.addAttribute("result", dao.selectResult(cn));
 		return "ResultView";
 	}
 }
