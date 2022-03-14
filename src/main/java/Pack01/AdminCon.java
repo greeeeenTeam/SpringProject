@@ -50,9 +50,28 @@ public class AdminCon {
 	}
 	
 	@RequestMapping(value = "/admin/examupdate", method = RequestMethod.GET)
-	String updateExam() {
+	String updateExamView(Model model, @RequestParam(value="id") String updateId) {
+		System.out.println("시험 수정 view");
+		model.addAttribute("exam", AdminDAO.ExamGet(updateId));
+		return "UpdateExam";
+	}
+	
+	@RequestMapping(value = "/admin/examupdate", method = RequestMethod.POST)
+	String updateExam(Model model, 
+			@RequestParam(value="ex_id") String updateId,
+			@RequestParam(value="exam_question") String question,
+			@RequestParam(value="ans_1") String ans_1,
+			@RequestParam(value="ans_2") String ans_2,
+			@RequestParam(value="ans_3") String ans_3,
+			@RequestParam(value="ans_4") String ans_4,
+			@RequestParam(value="answer") String answer
+			) {
 		System.out.println("시험 수정");
-		return "ListExam";
+		Boolean daoCheck = AdminDAO.UpdateExam(updateId, question, ans_1, ans_2, ans_3, ans_4, answer);
+		if(daoCheck) {
+			return "redirect:/admin/listexam";
+		}
+		return "redirect:/admin/listexam";
 	}
 	
 	@RequestMapping(value = "/admin/examdelete", method = RequestMethod.GET)
