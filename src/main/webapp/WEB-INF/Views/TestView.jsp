@@ -12,7 +12,7 @@
  }
 </style> -->
 <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
@@ -21,72 +21,6 @@
 	<link rel="stylesheet" type="text/css" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css">
 </head>
 	<body>
-<%-- 	<script>
-			function question1(){
-				var con = document.getElementById("q1");
-				var cla = document
-				if(con.style.display=='none'){
-					con.style.display = 'block';
-				}else{
-					con.style.display = 'none';
-				}
-			}
-			function question2(){
-				var con = document.getElementById("q2");
-				if(con.style.display=='none'){
-					con.style.display = 'block';
-				}else{
-					con.style.display = 'none';
-				}
-			}
-			</script>
-			<button id="btn1" onClick="question1()">1</button>
-			<button id="btn2" onClick="question2()">2</button>
-			<button id="btn3">3</button>
-			<button id="btn4">4</button>
-			<button id="btn5">5</button>
-	<form action="DoTest">
-		<fieldset>
-			<div>
-				<h1 style="text-align:center;">Question</h1>
-			</div>
-			
-			<%
-				ResultSet rs = (ResultSet) request.getAttribute("questionList");
-				int idx = 1;
-				while (rs.next()) {
-					String question = rs.getString("question");
-					String ex_1 = rs.getString("ex_1");
-					String ex_2 = rs.getString("ex_2");
-					String ex_3 = rs.getString("ex_3");
-					String ex_4 = rs.getString("ex_4");
-					String answer = rs.getString("answer");
-			%>
-			<div id="q<%= idx%>" class="questionDiv">
-				<div><%=question %></div>
-				<label><input type="radio" name="answer<%= idx%>"
-					value="Question1"> <% out.println(ex_1); %></label> 
-					
-				<label><input type="radio" name="answer<%= idx%>"
-					value="Question2"> <% out.println(ex_2); %></label>
-	
-				<label><input type="radio" name="answer<%= idx%>"
-					value="Question3"> <% out.println(ex_3); %></label> 
-	
-				<label><input type="radio" name="answer<%= idx%>"
-					value="Question4"> <% out.println(ex_4); %></label>
-	
-				<div style="text-align: center;">
-					<input type="submit" value="제출" onclick="alert('제출 완료:)')">
-				</div>
-			</div>
-	
-	<% idx++;	}idx =1;
-	%>
-
-			</fieldset>
-		</form> --%>
-	<!--Pagination red-->
 	<nav>
 	    <ul class="pagination pg-red">
 
@@ -132,37 +66,38 @@
 			<div>
 				<h1 style="text-align:center;">Question</h1>
 			</div>
-    <%
-			ResultSet rs = (ResultSet) request.getAttribute("questionList");
-			int idx = 1;
-			while (rs.next()) {
-				String question = rs.getString("question");
-				String ex_1 = rs.getString("ex_1");
-				String ex_2 = rs.getString("ex_2");
-				String ex_3 = rs.getString("ex_3");
-				String ex_4 = rs.getString("ex_4");
-				String answer = rs.getString("answer");
+   			<%
+				ResultSet rs = (ResultSet) request.getAttribute("questionList");
+   				int idx = 1;
+   				session.getAttribute("cn");	
+				while (rs.next()) {
+					String question = rs.getString("question");
+					String ex_1 = rs.getString("ex_1");
+					String ex_2 = rs.getString("ex_2");
+					String ex_3 = rs.getString("ex_3");
+					String ex_4 = rs.getString("ex_4");
+					String answer = rs.getString("answer");
 			%>
+
 			<div id="<%= idx%>" class="card">
 				<div><%=question %></div>
 				<label><input type="radio" name="answer<%= idx%>"
-					value="Question1"> <% out.println(ex_1); %></label> 
+					value="1"> <% out.println(ex_1); %></label> 
 					
 				<label><input type="radio" name="answer<%= idx%>"
-					value="Question2"> <% out.println(ex_2); %></label>
+					value="2"> <% out.println(ex_2); %></label>
 	
 				<label><input type="radio" name="answer<%= idx%>"
-					value="Question3"> <% out.println(ex_3); %></label> 
+					value="3"> <% out.println(ex_3); %></label> 
 	
 				<label><input type="radio" name="answer<%= idx%>"
-					value="Question4"> <% out.println(ex_4); %></label>
-	
-				<div style="text-align: center;">
-					<input type="submit" value="제출" onclick="alert('제출 완료:)')">
-				</div>
+					value="4"> <% out.println(ex_4); %></label>
+				<input type="hidden" name="checkAnswer<%=idx %>" value=<%=answer %>>
 			</div>
-	
-	<% idx++;	}idx =1;%>
+			<% idx++;}idx =1;%>
+			<div style="text-align: center;">
+				<input type="submit" value="제출" onclick="alert('제출 완료:)')">
+			</div>
 			</fieldset>
 		</form>
 </body>
