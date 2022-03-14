@@ -7,6 +7,7 @@
 <title>시험 시작</title>
 </head>
 <body>
+   <% if(session.getAttribute("cn")==null) { %>
    <form method="post">
       <label for="user_name">수험자 이름</label>
       <input type="text" name="user_name">
@@ -16,5 +17,8 @@
       <a href="findcn"> <input  type="button" value="수험번호찾기"></a> 
       
    </form>
+	<%} else {%>
+	<script>location.href="/SpringProject/test"; </script>
+	<%} %>
 </body>
 </html>
