@@ -35,9 +35,11 @@ public class AdminCon {
 			@RequestParam(value="ans_4") String ans_4,
 			@RequestParam(value="answer") String answer
 			) {
-		
-		AdminDAO.InsertProblem(question, ans_1, ans_2, ans_3, ans_4, answer);
-		return "admin";
+		Boolean daoCheck = AdminDAO.InsertProblem(question, ans_1, ans_2, ans_3, ans_4, answer);
+		if (!daoCheck) {
+			return "admin";
+		}
+		return "admin"; 
 	}
 	
 	@RequestMapping(value = "/admin/result", method = RequestMethod.GET)
@@ -45,5 +47,20 @@ public class AdminCon {
 		System.out.println("시험 본 결과");
 		model.addAttribute("resultList", AdminDAO.ResultList());
 		return "ResultList";
+	}
+	
+	@RequestMapping(value = "/admin/examupdate", method = RequestMethod.GET)
+	String updateExam() {
+		System.out.println("시험 수정");
+		return "ListExam";
+	}
+	
+	@RequestMapping(value = "/admin/examdelete", method = RequestMethod.GET)
+	String deleteExam(@RequestParam(value="id") String deleteId) {
+		Boolean daoCheck = AdminDAO.DeleteExam(deleteId);
+		if(daoCheck) {
+			return "redirect:/admin/listexam";
+		}
+		return "redirect:/admin/listexam";
 	}
 }

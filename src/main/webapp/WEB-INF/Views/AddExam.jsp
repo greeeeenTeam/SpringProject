@@ -31,7 +31,12 @@
 		</div>
 		<div class="form-group">
 		   <label for="answer">정답</label>
-		   <input type="text" class="form-control" name="answer" id="answer">
+		   <select id="answer" name="answer">
+		     <option value="1">1</option>
+		     <option value="2">2</option>
+		     <option value="3">3</option>
+		     <option value="4">4</option>
+		   </select>
 		</div>
 		<button type="submit">제출</button>
 	</form>

@@ -26,7 +26,7 @@ public class AdminDAO {
 	public static Boolean InsertProblem(String question, String ans_1, String ans_2, String ans_3, String ans_4, String answer) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO multiple_question values(?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO multiple_question values(NULL, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			conn = ConnectionProvider.getConnection();
@@ -64,8 +64,32 @@ public class AdminDAO {
 			return rs;
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionProvider.close(null, pstmt, conn);
 		}
 		
 		return null;
+	}
+	
+	public static Boolean DeleteExam(String deleteId) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "DELETE FROM multiple_question WHERE id = ?";
+		
+		try {
+			conn = ConnectionProvider.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, deleteId);
+			
+			int r = pstmt.executeUpdate();
+			
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionProvider.close(null, pstmt, conn);
+		}
+		
+		return false;
 	}
 }
