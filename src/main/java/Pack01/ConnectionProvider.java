@@ -13,7 +13,7 @@ public class ConnectionProvider {
 		Connection conn = null;
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			String url = "jdbc:mysql://54.144.194.195:3306/onlinetest?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC";
 			conn = DriverManager.getConnection(url, "lion", "1234");
 

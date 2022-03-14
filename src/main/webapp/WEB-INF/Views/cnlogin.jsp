@@ -14,6 +14,8 @@
       <label for="user_cn">수험자 수험번호</label>
       <input type="text" name="user_cn">
       <input type="submit">
+      <a href="findcn"> <input  type="button" value="수험번호찾기"></a> 
+      
    </form>
 	<%} else {%>
 	<script>location.href="/SpringProject/test"; </script>
