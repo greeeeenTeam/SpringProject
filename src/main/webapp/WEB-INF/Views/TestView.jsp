@@ -92,11 +92,18 @@
 				<label><input type="radio" name="answer<%= idx%>"
 					value="4"> <% out.println(ex_4); %></label>
 				<input type="hidden" name="checkAnswer" value=<%=answer %>>
+				<%if (idx <5){ %>
+				<div style="text-align: center;">
+					<input type="hidden" value="제출" onclick="alert('제출 완료:)')">
+				</div>
+				<%}else { %>
+				<div style="text-align: center;">
+					<input type="submit" value="제출" onclick="alert('제출 완료:)')">
+				</div>
+				<%} %>
 			</div>
 			<% idx++;}idx =1;%>
-			<div style="text-align: center;">
-				<input type="submit" value="제출" onclick="alert('제출 완료:)')">
-			</div>
+			
 			</fieldset>
 		</form>
 </body>
