@@ -218,8 +218,9 @@ public class Account {
 		return false;		
 	}
 	
-	public String getQuestion(String cn, String page) {
-		String sql = "select * from new_test where cn=?;";
+	public ResultSet getQuestion(String cn, String page) {
+		//String sql = "select * from new_test where cn=?;";
+		String sql = "select * from new_test nt join multiple_question mq on nt.q"+ page +" = mq.id where cn=?;";
 		String result = null;
 		Connection conn = null;
 		ResultSet rs = null;
@@ -230,11 +231,11 @@ public class Account {
 			pstmt.setString(1, cn);
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				System.out.println(rs.getString("q" + page));
-				result = rs.getString("q" + page);
-			}
-			return result;
+//			while(rs.next()) {
+//				System.out.println(rs.getString("q" + page));
+//				result = rs.getString("q" + page);
+//			}
+			return rs;
 			
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -243,24 +244,24 @@ public class Account {
 		return null;
 	}
 	
-	public ResultSet getQuestion(String qIdx) {
-		System.out.println("문제 찾는중");
-		String sql = "select * from multiple_question WHERE id=?";
-		Connection conn = null;
-		ResultSet rs = null;
-		PreparedStatement pstmt = null;
-		try {
-			conn = ConnectionProvider.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, qIdx);
-			rs = pstmt.executeQuery();
-			return rs;
-		}catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-		}
-		return null; 
-	}
+//	public ResultSet getQuestion(String qIdx) {
+//		System.out.println("문제 찾는중");
+//		String sql = "select * from multiple_question WHERE id=?";
+//		Connection conn = null;
+//		ResultSet rs = null;
+//		PreparedStatement pstmt = null;
+//		try {
+//			conn = ConnectionProvider.getConnection();
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, qIdx);
+//			rs = pstmt.executeQuery();
+//			return rs;
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//			System.out.println(e.getMessage());
+//		}
+//		return null; 
+//	}
 	
 	public Boolean updateResult(String cn, String page, String answer) {
 		Connection conn = null;
@@ -288,5 +289,30 @@ public class Account {
 		}
 		return false;	
 	}
-	
+	public Boolean updateScore(String cn, String page, String answer) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE new_test SET  WHERE cn=?";
+		try {
+			conn = ConnectionProvider.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "a"+page);
+			pstmt.setString(2, answer);
+			pstmt.setString(3, cn);
+			
+			int rs = pstmt.executeUpdate();
+			if(rs>=1)
+			{
+				return true;
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}finally {
+			ConnectionProvider.close(null, pstmt, conn);
+		}
+		return false;	
+	}
 }

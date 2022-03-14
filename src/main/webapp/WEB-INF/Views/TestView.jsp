@@ -14,7 +14,7 @@
 				<h1 style="text-align:center;">Question</h1>
 			</div>
    			<%
-				ResultSet rs = (ResultSet) request.getAttribute("result");
+				ResultSet rs = (ResultSet)request.getAttribute("result");
 				while (rs.next()) {
 					String questionID = rs.getString("id");
 					String question = rs.getString("question");

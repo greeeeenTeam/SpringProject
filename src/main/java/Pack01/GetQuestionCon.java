@@ -88,19 +88,19 @@ public class GetQuestionCon {
 		Account dao = new Account();
 		HttpSession session = request.getSession(); 
 		String cn =(String)session.getAttribute("cn");
-		String qNum = dao.getQuestion(cn, page);
-		model.addAttribute("result", dao.getQuestion(qNum));
+		//String qNum = dao.getQuestion(cn, page);
+		//model.addAttribute("result", dao.getQuestion(qNum));
+		model.addAttribute("result",dao.getQuestion(cn, page));
 		return "TestView";
 	}
 	
-	@RequestMapping(value = "/testing", method = RequestMethod.POST)
-	String updateResult(Model model, @RequestParam("page") String page, HttpServletRequest request) {
-		String answer1 = request.getParameter("answer1");
-		Account dao = new Account();
-		HttpSession session = request.getSession(); 
-		String cn =(String)session.getAttribute("cn");
-		String qNum = dao.getQuestion(cn, page);
-		model.addAttribute("result", dao.getQuestion(qNum));
-		return "TestView";
-	}
+	/*
+	 * @RequestMapping(value = "/testing", method = RequestMethod.POST) String
+	 * updateResult(Model model, @RequestParam("page") String page,
+	 * HttpServletRequest request) { String answer1 =
+	 * request.getParameter("answer1"); Account dao = new Account(); HttpSession
+	 * session = request.getSession(); String cn
+	 * =(String)session.getAttribute("cn"); String qNum = dao.getQuestion(cn, page);
+	 * model.addAttribute("result", dao.getQuestion(qNum)); return "TestView"; }
+	 */
 }
