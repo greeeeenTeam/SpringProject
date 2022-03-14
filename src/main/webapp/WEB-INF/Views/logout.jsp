@@ -8,8 +8,8 @@
 </head>
 <body>
 <%
-//Cookie user = new Cookie("id", "");
-session.invalidate();//세션의 모든 속성 제거
+session.invalidate();
+out.println("<script>alert('로그아웃되었습니다'); history.back(); </script>");
 response.sendRedirect("index.jsp");
 %>
 <!-- 로그아웃 처리 완료 -->
