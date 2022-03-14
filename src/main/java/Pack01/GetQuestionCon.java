@@ -1,6 +1,12 @@
 package Pack01;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -13,9 +19,55 @@ import Pack01.Account;
 @Controller
 public class GetQuestionCon {
 	@RequestMapping("/test")
-	String getQuestionList(Model model) {
+	String getQuestionList(Model model, HttpServletResponse response, HttpServletRequest request) {
 		Account dao = new Account();
-		model.addAttribute("questionList", dao.selectQuestionList());
+		
+		HttpSession session = request.getSession(); 
+		String cn =(String)session.getAttribute("cn");
+		
+		Boolean isInProgress = dao.isInProgress(cn);
+		if (isInProgress) {
+			//조인해서 넘겨주기 new_test랑 multiple_questin DAta
+			//model.addAttribute("questionListInProgress", dao.selectQuestionInProgress(cn));
+			// 첫번째 null값 찾기
+			ResultSet rs = dao.selectQuestionInProgress(cn);
+			
+			int page = 1;
+			try {
+				while(rs.next()) {
+					String a1 = rs.getString("a1");
+					String a2 = rs.getString("a2");
+					String a3 = rs.getString("a3");
+					String a4 = rs.getString("a4");
+					String a5 = rs.getString("a5");
+					if(a1==null || a1.isEmpty()) page = 1;
+					else if(a2==null || a2.isEmpty()) page = 2;
+					else if(a3==null || a3.isEmpty()) page = 3;
+					else if(a4==null || a4.isEmpty()) page = 4;
+					else if(a5==null || a5.isEmpty()) page = 5;
+				}
+				response.sendRedirect("/testing?page=" + page);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else {
+			// model.addAttribute("questionList", dao.selectQuestionList());
+			ResultSet rs = dao.selectQuestionList();
+			ArrayList<String> problemList = new ArrayList<String>();
+			try {
+				while(rs.next()) {
+					problemList.add(rs.getString("id"));
+				}
+				dao.createOMR(cn, problemList);
+				dao.updateFlag(cn, "1");
+				response.sendRedirect("/test");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		return "TestView";
 	}
 	
@@ -26,5 +78,11 @@ public class GetQuestionCon {
 		String cn =(String)session.getAttribute("cn");
 		model.addAttribute("result", dao.selectResult(cn));
 		return "ResultView";
+	}
+	
+	@RequestMapping("/testing")
+	String getResult(@RequestParam("page") String page) {
+		
+		return "xx";
 	}
 }

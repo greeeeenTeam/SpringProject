@@ -70,6 +70,7 @@
 				ResultSet rs = (ResultSet) request.getAttribute("questionList");
    				int idx = 1;
 				while (rs.next()) {
+					String questionID = rs.getString("id");
 					String question = rs.getString("question");
 					String ex_1 = rs.getString("ex_1");
 					String ex_2 = rs.getString("ex_2");
