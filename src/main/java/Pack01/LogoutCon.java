@@ -15,5 +15,8 @@ public class LogoutCon extends HttpServlet {
 	String logout() {
 		return "logout";
 	}
-	
+	@RequestMapping(value="/main", method = RequestMethod.GET)
+	String main() {
+		return "main";
+	}
 }

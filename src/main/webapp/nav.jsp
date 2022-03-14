@@ -11,9 +11,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>여긴 Nav 입니당.ㅎㅎ</h1>
 	<a href="logout">
 		<input type = "button" value="로그아웃">
+	</a>
+	<a href="main">
+		<input type = "button" value="홈으로">
+	</a>
+	<a href="javascript:history.back()">
+		<input type = "button" value="뒤로가기">
 	</a>
 </body>
 </html>
