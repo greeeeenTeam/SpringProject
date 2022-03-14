@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import Pack01.Account;
@@ -19,7 +20,7 @@ import Pack01.Account;
 @Controller
 public class GetQuestionCon {
 	@RequestMapping("/test")
-	String getQuestionList(Model model, HttpServletResponse response, HttpServletRequest request) {
+	void getQuestionList(Model model, HttpServletResponse response, HttpServletRequest request) {
 		Account dao = new Account();
 		
 		HttpSession session = request.getSession(); 
@@ -34,6 +35,7 @@ public class GetQuestionCon {
 			
 			int page = 1;
 			try {
+				System.out.println("거의 다 옴");
 				while(rs.next()) {
 					String a1 = rs.getString("a1");
 					String a2 = rs.getString("a2");
@@ -46,7 +48,8 @@ public class GetQuestionCon {
 					else if(a4==null || a4.isEmpty()) page = 4;
 					else if(a5==null || a5.isEmpty()) page = 5;
 				}
-				response.sendRedirect("/testing?page=" + page);
+				System.out.println(page);
+				response.sendRedirect("testing?page=" + page);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -61,14 +64,14 @@ public class GetQuestionCon {
 				}
 				dao.createOMR(cn, problemList);
 				dao.updateFlag(cn, "1");
-				response.sendRedirect("/test");
+				response.sendRedirect("test");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		return "TestView";
+//		return "TestView";
 	}
 	
 	@RequestMapping("/result")
@@ -80,9 +83,24 @@ public class GetQuestionCon {
 		return "ResultView";
 	}
 	
-	@RequestMapping("/testing")
-	String getResult(@RequestParam("page") String page) {
-		
-		return "xx";
+	@RequestMapping(value = "/testing", method = RequestMethod.GET)
+	String getResult(Model model, @RequestParam("page") String page, HttpServletRequest request) {
+		Account dao = new Account();
+		HttpSession session = request.getSession(); 
+		String cn =(String)session.getAttribute("cn");
+		String qNum = dao.getQuestion(cn, page);
+		model.addAttribute("result", dao.getQuestion(qNum));
+		return "TestView";
+	}
+	
+	@RequestMapping(value = "/testing", method = RequestMethod.POST)
+	String updateResult(Model model, @RequestParam("page") String page, HttpServletRequest request) {
+		String answer1 = request.getParameter("answer1");
+		Account dao = new Account();
+		HttpSession session = request.getSession(); 
+		String cn =(String)session.getAttribute("cn");
+		String qNum = dao.getQuestion(cn, page);
+		model.addAttribute("result", dao.getQuestion(qNum));
+		return "TestView";
 	}
 }
