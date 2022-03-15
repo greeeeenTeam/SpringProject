@@ -1,6 +1,7 @@
 <%@page import="java.sql.ResultSet"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:include page="../../nav.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +48,7 @@
 			<% } %>			
 			</fieldset>
 			<div style="text-align: center;">
-				<input type="submit" value="Á¦Ãâ" onclick="alert('Á¦Ãâ ¿Ï·á:)')">
+				<input type="submit" value="ï¿½ï¿½ï¿½ï¿½" onclick="alert('ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½:)')">
 			</div>
 		</form>
 </body>
