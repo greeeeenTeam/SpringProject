@@ -313,7 +313,7 @@ public class Account {
 		}
 		return false;	
 	}
-	public Boolean updateAnswer(String cn, String page) {
+	public Boolean updateAnswer(String cn, String page,String answer) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -321,7 +321,7 @@ public class Account {
 		try {
 			conn = ConnectionProvider.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, page);
+			pstmt.setString(1, answer);
 			pstmt.setString(2, cn);
 			
 			int rs = pstmt.executeUpdate();
