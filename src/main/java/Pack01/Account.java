@@ -168,7 +168,7 @@ public class Account {
 		PreparedStatement pstmt = null;
 		
 		
-		String sql = "INSERT INTO new_test values(null, ?, ?, null, ?, null, ?, null, ?, null, ?, null,null)";
+		String sql = "INSERT INTO new_test values(null, ?, ?, null, ?, null, ?, null, ?, null, ?, null, 0)";
 		try {
 			conn = ConnectionProvider.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -313,4 +313,30 @@ public class Account {
 		}
 		return false;	
 	}
+	public Boolean updateAnswer(String cn, String page) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE new_test SET a" + page + " = ? WHERE cn=?";
+		try {
+			conn = ConnectionProvider.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, page);
+			pstmt.setString(2, cn);
+			
+			int rs = pstmt.executeUpdate();
+			if(rs>=1)
+			{
+				return true;
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}finally {
+			ConnectionProvider.close(null, pstmt, conn);
+		}
+		return false;	
+	}
+	
 }

@@ -23,7 +23,8 @@ public class DoTestCon {
 		Account dao = new Account();
 		HttpSession session = request.getSession(); 
 		String cn =(String)session.getAttribute("cn");
-
+		
+		dao.updateAnswer(cn, page);
 		if(answer.equals(checkAnswer)) {
 			dao.updateScore(cn);
 		}
