@@ -48,7 +48,7 @@
 			<% } %>			
 			</fieldset>
 			<div style="text-align: center;">
-				<input type="submit" value="����" onclick="alert('���� �Ϸ�:)')">
+				<input type="submit" value="제출" onclick="alert('제출완료')">
 			</div>
 		</form>
 </body>

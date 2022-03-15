@@ -25,7 +25,7 @@ public class ExamStart {
 			rs = pstmt.executeQuery();
 
 			while(rs.next()){
-				if(cn.equals(rs.getString("cn"))) {
+				if(cn.equals(rs.getString("cn")) && request.getParameter("name").equals(rs.getString("name"))) {
 					n=1;
 					break;
 				}
@@ -36,11 +36,11 @@ public class ExamStart {
 		}try{
 			if(pstmt!=null) pstmt.close();
 			if(conn!=null) conn.close();
-			response.setContentType("text/html;charset=UTF-8");
 
 			if(n>0){
 				HttpSession session = request.getSession();
 				session.setAttribute("cn", cn);
+				response.setContentType("text/html;charset=UTF-8");
 				response.sendRedirect("/SpringProject/test");
 			}
 		}

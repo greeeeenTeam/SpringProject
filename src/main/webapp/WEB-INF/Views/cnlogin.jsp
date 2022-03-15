@@ -14,7 +14,7 @@
       <input type="text" name="user_name">
       <label for="user_cn">수험자 수험번호</label>
       <input type="text" name="user_cn">
-      <input type="submit">
+      <input type="submit" value="입장">
       <a href="findcn"> <input  type="button" value="수험번호찾기"></a> 
       
    </form>
