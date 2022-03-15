@@ -29,16 +29,14 @@ public class DoTestCon {
 			dao.updateScore(cn);
 		}
 		try {
-			response.sendRedirect("testing?page=" + (Integer.parseInt(page)+1));
+			if(page.equals("5")) {
+				response.sendRedirect("resultPage");
+			} else {
+				response.sendRedirect("testing?page=" + (Integer.parseInt(page)+1));
+			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		Boolean test = dao.DoTest(cn, pass, count);
-//		if(test) {
-//			model.addAttribute("result", dao.selectResult(cn));
-//		}
-		
-		//return "ResultView";
+
 	}
 }

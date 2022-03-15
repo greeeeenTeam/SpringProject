@@ -92,7 +92,7 @@ public class Account {
 		return null;
 	}
 
-	public Boolean DoTest(String cn, int pass, int count) {
+	public Boolean DoTest(String cn, int pass, String count) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -103,7 +103,7 @@ public class Account {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, Integer.parseInt(cn));
 			pstmt.setInt(2,pass);
-			pstmt.setInt(3,count);
+			pstmt.setString(3,count);
 			
 			int rs = pstmt.executeUpdate();
 
