@@ -1,5 +1,10 @@
 package Pack01;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -67,10 +72,10 @@ public class AdminCon {
 	@RequestMapping(value = "/admin/examupdate", method = RequestMethod.GET)
 	String updateExamView(Model model, @RequestParam(value="id") String updateId,
 			HttpServletRequest request, HttpServletResponse response) {
-//		System.out.println("시험 수정 view");
-//		HttpSession session = request.getSession();
-//		if(!(session.getAttribute("cn").equals("admin"))) return "logout";
-//		model.addAttribute("exam", AdminDAO.ExamGet(updateId));
+		System.out.println("시험 수정 view");
+		HttpSession session = request.getSession();
+		if(!(session.getAttribute("cn").equals("admin"))) return "logout";
+		model.addAttribute("exam", AdminDAO.ExamGet(updateId));
 		return "UpdateExam";
 	}
 	
@@ -105,5 +110,31 @@ public class AdminCon {
 			return "redirect:/admin/listexam";
 		}
 		return "redirect:/admin/listexam";
+	}
+	
+	@RequestMapping(value = "/admin/test", method = RequestMethod.GET)
+	String timeTest(Model model, HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		if(!(session.getAttribute("cn").equals("admin"))) return "logout";
+		System.out.println("어드민 테스트--------------------------");
+		ResultSet rs = AdminDAO.TimeTest();
+		System.out.println("시간체크 시작");
+		Date date = null;
+		try {
+			while(rs.next()) {
+				date = rs.getTimestamp("now");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println(date);
+		System.out.println("년"+ date.getYear());
+		System.out.println("월"+date.getMonth());
+		System.out.println("일"+date.getDate());
+		System.out.println("시"+date.getHours());
+		System.out.println("분"+date.getMinutes());
+		System.out.println("초"+date.getSeconds());
+//		model.addAttribute("time", );
+		return "TimeTest";
 	}
 }

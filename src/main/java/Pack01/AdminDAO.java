@@ -134,4 +134,21 @@ public class AdminDAO {
 		
 		return false;
 	}
+	
+	public static ResultSet TimeTest() {
+		ResultSet rs = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "SELECT * FROM new_test WHERE id=62";
+		
+		try {
+			conn = ConnectionProvider.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			return rs;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 		
+		return null;
+	}
 }
