@@ -25,8 +25,9 @@ public class GetQuestionCon {
 		
 		HttpSession session = request.getSession(); 
 		String cn =(String)session.getAttribute("cn");
-		
+		// 진행중인지 판별
 		Boolean isInProgress = dao.isInProgress(cn);
+		// 진행중이면 null값 찾아서 해당 페이지로 이동
 		if (isInProgress) {
 			//조인해서 넘겨주기 new_test랑 multiple_questin DAta
 			//model.addAttribute("questionListInProgress", dao.selectQuestionInProgress(cn));
@@ -48,12 +49,12 @@ public class GetQuestionCon {
 					else if(a4==null || a4.isEmpty()) page = 4;
 					else if(a5==null || a5.isEmpty()) page = 5;
 				}
-				System.out.println(page);
 				response.sendRedirect("testing?page=" + page);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		//진행중이 아니면 문제 new_test에 넣기
 		else {
 			// model.addAttribute("questionList", dao.selectQuestionList());
 			ResultSet rs = dao.selectQuestionList();

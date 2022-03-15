@@ -133,7 +133,7 @@ public class Account {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				return true;
+				if(rs.getString("flag").equals("1"))	return true;
 			}
 			
 		}catch (Exception e) {
@@ -168,7 +168,7 @@ public class Account {
 		PreparedStatement pstmt = null;
 		
 		
-		String sql = "INSERT INTO new_test values(null, ?, ?, null, ?, null, ?, null, ?, null, ?, null)";
+		String sql = "INSERT INTO new_test values(null, ?, ?, null, ?, null, ?, null, ?, null, ?, null,null)";
 		try {
 			conn = ConnectionProvider.getConnection();
 			pstmt = conn.prepareStatement(sql);
