@@ -23,10 +23,6 @@
 					<a href="cnlogin">
 						<input type = "button" value="시험보기">
 					</a>
-					<a href="result">
-						<input type = "button" value="결과보기">
-					</a>
-
             	</div>
 			</fieldset>
 		</form>

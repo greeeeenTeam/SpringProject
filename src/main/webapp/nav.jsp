@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="logout">
+	<a href="/SpringProject/logout">
 		<input type = "button" value="로그아웃">
 	</a>
 	<a href="main">
