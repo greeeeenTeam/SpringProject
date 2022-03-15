@@ -16,7 +16,6 @@ public class ExamStart {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int n=0;
-		
 		String sql = "select * from member where cn=?";
 		try {
 			conn = ConnectionProvider.getConnection();
@@ -42,7 +41,7 @@ public class ExamStart {
 			if(n>0){
 				HttpSession session = request.getSession();
 				session.setAttribute("cn", cn);
-				response.sendRedirect("test");
+				response.sendRedirect("/SpringProject/test");
 			}
 		}
 		catch(SQLException se){

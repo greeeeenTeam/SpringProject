@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class StartCon {
 	@RequestMapping(value = "/cnlogin", method = RequestMethod.POST)
-	String signup(
+//	String signup(
+	void signup(
 	        @RequestParam(value="user_cn") String cn,
 	        HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("examstart");
 		ExamStart dao = new ExamStart();
 		
 		Boolean test = dao.login(cn, request, response);
@@ -22,8 +22,7 @@ public class StartCon {
 			System.out.println("db select");
 		} 
 		//StartDTO dto = new StartDTO(cn);
-		System.out.println("여기로감?");
-		return "findcn";
+//		return "findcn";
 	}
 	
 	@RequestMapping(value = "/cnlogin", method = RequestMethod.GET)
