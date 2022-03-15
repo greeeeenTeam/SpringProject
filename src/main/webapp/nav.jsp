@@ -4,9 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+	rel="stylesheet" 
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+	crossorigin="anonymous">
 <title>Insert title here</title>
 </head>
 <body>
 	<h1>여긴 Nav 입니당.ㅎㅎ</h1>
+	<a href="logout">
+		<input type = "button" value="로그아웃">
+	</a>
 </body>
 </html>
