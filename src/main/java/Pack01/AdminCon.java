@@ -67,10 +67,10 @@ public class AdminCon {
 	@RequestMapping(value = "/admin/examupdate", method = RequestMethod.GET)
 	String updateExamView(Model model, @RequestParam(value="id") String updateId,
 			HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("시험 수정 view");
-		HttpSession session = request.getSession();
-		if(!(session.getAttribute("cn").equals("admin"))) return "logout";
-		model.addAttribute("exam", AdminDAO.ExamGet(updateId));
+//		System.out.println("시험 수정 view");
+//		HttpSession session = request.getSession();
+//		if(!(session.getAttribute("cn").equals("admin"))) return "logout";
+//		model.addAttribute("exam", AdminDAO.ExamGet(updateId));
 		return "UpdateExam";
 	}
 	

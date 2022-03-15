@@ -25,14 +25,18 @@
 		while(rs.next()) {
 			String question = rs.getString("id");
 			String cn = rs.getString("cn");
-			String pass = rs.getString("pass");
 			String result = rs.getString("result");
+			String pass = rs.getString("pass");
 	%>
 		<tr>
 			<td><% out.println(question); %></td>
 			<td><% out.println(cn); %></td>
-			<td><% out.println(pass); %></td>
 			<td><% out.println(result); %></td>
+			<td><% if(pass.equals("0")) {
+				out.println("탈락");
+			} else {
+				out.println("통과");
+			} %></td>
 		</tr>
 	<%
 		}
