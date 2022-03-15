@@ -289,17 +289,15 @@ public class Account {
 		}
 		return false;	
 	}
-	public Boolean updateScore(String cn, String page, String answer) {
+	public Boolean updateScore(String cn) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
-		String sql = "UPDATE new_test SET  WHERE cn=?";
+		String sql = "UPDATE new_test SET score=score+1 WHERE cn=?";
 		try {
 			conn = ConnectionProvider.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "a"+page);
-			pstmt.setString(2, answer);
-			pstmt.setString(3, cn);
+			pstmt.setString(1, cn);
 			
 			int rs = pstmt.executeUpdate();
 			if(rs>=1)

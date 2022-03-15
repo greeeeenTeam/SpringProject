@@ -8,13 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="DoTest">
+<form action="DoTest?page">
 		<fieldset>
 			<div>
 				<h1 style="text-align:center;">Question</h1>
 			</div>
    			<%
 				ResultSet rs = (ResultSet)request.getAttribute("result");
+   				String url = request.getRequestURL().toString();
 				while (rs.next()) {
 					String questionID = rs.getString("id");
 					String question = rs.getString("question");
@@ -23,6 +24,7 @@
 					String ex_3 = rs.getString("ex_3");
 					String ex_4 = rs.getString("ex_4");
 					String answer = rs.getString("answer");
+					String score = rs.getString("score");
 			%>
 
 			<div class="card">
@@ -39,6 +41,8 @@
 				<label><input type="radio" name="answer"
 					value="4"> <% out.println(ex_4); %></label>
 				<input type="hidden" name="checkAnswer" value=<%= answer %>>
+				<input type="hidden" name="score" value=<%= score %>>
+				<input type='hidden' name='page' id='page' value='0'/>
 			</div>
 			<% } %>			
 			</fieldset>
@@ -48,6 +52,15 @@
 		</form>
 </body>
 <script>
+const urlStr = window.location.href;
+const url = new URL(urlStr);
+const urlParams = url.searchParams;
+const page = urlParams.get('page');
 
+window.onload = function() {
+	var pageElement = document.getElementById("page");
+	console.log(pageElement)
+	pageElement.setAttribute("value", page)
+}
 </script>
 </html>
