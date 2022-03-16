@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="DoTest?page">
+<form id="theForm" action="DoTest?page">
 		<fieldset>
 			<div>
 				<h1 style="text-align:center;">Question</h1>
@@ -51,6 +51,8 @@
 				<input type="submit" value="제출" onclick="alert('제출완료')">
 			</div>
 		</form>
+		<div class="countdown">00:00:00</div>
+<hr/>
 </body>
 <script>
 const urlStr = window.location.href;
@@ -63,5 +65,35 @@ window.onload = function() {
 	console.log(pageElement)
 	pageElement.setAttribute("value", page)
 }
+var tmhandler;
+/* Timer */
+function countdown( className, seconds ){
+        var element, endTime, hours, mins, secs, msLeft, time;
+       
+        function updateTimer(){
+               msLeft = endTime - (+new Date);
+               if ( msLeft < 0 ) {
+                   document.getElementById('theForm').submit();
+               } else {
+                       time = new Date( msLeft );
+                      
+                       hours = ('0' + time.getUTCHours()).slice(-2);
+                       mins  = ('0' + time.getUTCMinutes()).slice(-2);
+                       secs  = ('0' + time.getUTCSeconds()).slice(-2);
+                       element.innerHTML = hours + ':' + mins + ':' + secs;
+                       tmhandler = setTimeout( updateTimer, time.getUTCMilliseconds());
+               }
+        }
+       
+        element = document.getElementsByClassName(className);
+        if(element.length!=0) {
+               element = element[0];
+               endTime = (+new Date) + 3000 * seconds;
+               updateTimer();
+        } else {
+               alert("no timer");
+        }
+}
+countdown('countdown', 10);  // seconds
 </script>
 </html>

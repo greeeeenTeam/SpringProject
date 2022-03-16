@@ -149,7 +149,9 @@ li a.contact:hover {
         </label>
         <a href="main" class="logo">愛</a>
         <ul class="navlinks">
+        <%if(session.getAttribute("cn") != null){ %>
           <li><a href="/SpringProject/logout">로그아웃</a></li>
+          <%} %>
           <li><a href="main">홈으로</a></li>
           <li><a href="javascript:history.back()">뒤로가기</a></li>
         </ul>
