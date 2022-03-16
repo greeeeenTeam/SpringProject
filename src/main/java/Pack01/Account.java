@@ -119,7 +119,7 @@ public class Account {
 		return false;
 	}
 	
-	public Boolean isInProgress(String cn) {
+	public String isInProgress(String cn) {
 		ResultSet rs = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -133,7 +133,8 @@ public class Account {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				if(rs.getString("flag").equals("1"))	return true;
+				if(rs.getString("flag").equals("1"))	return "1";
+				if(rs.getString("flag").equals("2"))	return "2";
 			}
 			
 		}catch (Exception e) {
@@ -141,7 +142,7 @@ public class Account {
 		}finally {
 			ConnectionProvider.close(null, pstmt, conn);
 		}
-		return false;
+		return "0";
 	}
 	
 	public ResultSet selectQuestionInProgress(String cn) {

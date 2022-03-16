@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<jsp:include page="../../nav.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 	<a href="/SpringProject/test">
 		<button>시험응시</button>
 	</a>
-	<a href="/SpringProject/resultPage">
+	<a href="/SpringProject/directResult">
 		<button>결과보기</button>
 	</a>
 </body>

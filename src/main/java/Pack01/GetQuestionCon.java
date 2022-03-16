@@ -1,5 +1,6 @@
 package Pack01;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -27,10 +28,10 @@ public class GetQuestionCon {
 		String cn =(String)session.getAttribute("cn");
 		// 진행중인지 판별
 		System.out.println("is progreess before");
-		Boolean isInProgress = dao.isInProgress(cn);
+		String isInProgress = dao.isInProgress(cn);
 		System.out.println("is progreess after");
 		// 진행중이면 null값 찾아서 해당 페이지로 이동
-		if (isInProgress) {
+		if (isInProgress == "1") {
 			//조인해서 넘겨주기 new_test랑 multiple_questin DAta
 			//model.addAttribute("questionListInProgress", dao.selectQuestionInProgress(cn));
 			// 첫번째 null값 찾기
@@ -52,6 +53,17 @@ public class GetQuestionCon {
 //				}
 //				response.sendRedirect("testing?page=" + page);
 			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if (isInProgress == "2") {
+			//조인해서 넘겨주기 new_test랑 multiple_questin DAta
+			//model.addAttribute("questionListInProgress", dao.selectQuestionInProgress(cn));
+			// 첫번째 null값 찾기
+			try {
+				response.sendRedirect("directResult");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
