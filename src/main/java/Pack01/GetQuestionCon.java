@@ -27,9 +27,7 @@ public class GetQuestionCon {
 		HttpSession session = request.getSession(); 
 		String cn =(String)session.getAttribute("cn");
 		// 진행중인지 판별
-		System.out.println("is progreess before");
 		String isInProgress = dao.isInProgress(cn);
-		System.out.println("is progreess after");
 		// 진행중이면 null값 찾아서 해당 페이지로 이동
 		if (isInProgress == "1") {
 			//조인해서 넘겨주기 new_test랑 multiple_questin DAta
@@ -39,15 +37,19 @@ public class GetQuestionCon {
 			
 			int page = 1;
 			try {
-				while(rs.next()) {
-					String ans = null;
-					for(int i = 1; i <= 5; i++) {
-						ans = rs.getString("a" + i);
-						if(ans == null || ans.isEmpty()) page = i;
-						response.sendRedirect("testing?page=" + page);
+//				if(rs == null) {
+//					response.sendRedirect("/SpringProject/resultPage");
+//				} else {
+					while(rs.next()) {
+						String ans = null;
+						for(int i = 1; i <= 5; i++) {
+							ans = rs.getString("a" + i);
+							if(ans == null || ans.isEmpty()) page = i;
+							response.sendRedirect("testing?page=" + page);
+						}
 					}
-				}
-				response.sendRedirect("/SpringProject/resultPage");
+					response.sendRedirect("/SpringProject/resultPage");
+//				}
 //				if(page == 0) {
 //					return "다시 접수해주세요.";
 //				}
@@ -89,15 +91,6 @@ public class GetQuestionCon {
 		}
 //		return "TestView";
 	}
-	
-//	@RequestMapping("/result")
-//	String getResult(Model model,HttpServletRequest request) {
-//		Account dao = new Account();
-//		HttpSession session = request.getSession(); 
-//		String cn =(String)session.getAttribute("cn");
-//		model.addAttribute("result", dao.selectResult(cn));
-//		return "ResultView";
-//	}
 	
 	@RequestMapping(value = "/testing", method = RequestMethod.GET)
 	String getResult(Model model, @RequestParam("page") String page, HttpServletRequest request) {

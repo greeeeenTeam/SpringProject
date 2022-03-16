@@ -15,7 +15,12 @@ h1 {
 </head>
 <body>
 	<h1>
-		수험번호 : <%= (String)request.getAttribute("cn") %>
+		<% if(request.getAttribute("cn") == null) { %>
+			<p>수험번호를 찾는데 실패했습니다.</p>
+			<p>이름과 생년월일을 확인후 다시시도 해주세요.</p>
+		<% } else { %>
+			수험번호 : <%= (String)request.getAttribute("cn") %>
+		<% } %>
 	</h1>
 </body>
 

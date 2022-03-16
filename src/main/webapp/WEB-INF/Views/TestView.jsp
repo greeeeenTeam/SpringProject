@@ -12,7 +12,7 @@
 <form id="theForm" action="DoTest?page">
 		<fieldset>
 			<div>
-				<h1 style="text-align:center;">Question</h1>
+				<h1 id="problem_idx" style="text-align:center;"></h1>
 			</div>
    			<%
 				ResultSet rs = (ResultSet)request.getAttribute("result");
@@ -29,7 +29,7 @@
 			%>
 
 			<div class="card">
-				<div><%=question %></div>
+				<div><%=question %> </div>
 				<label><input type="radio" name="answer"
 					value="1"> <% out.println(ex_1); %></label> 
 					
@@ -64,6 +64,8 @@ window.onload = function() {
 	var pageElement = document.getElementById("page");
 	console.log(pageElement)
 	pageElement.setAttribute("value", page)
+	document.getElementById("problem_idx").innerText = "Question" + page;
+	
 }
 var tmhandler;
 /* Timer */

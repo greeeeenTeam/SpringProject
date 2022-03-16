@@ -47,8 +47,7 @@ public class ResultCon {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("너냐");
-		return null;
+		return "Error";
 	}
 	
 	@RequestMapping("/directResult")

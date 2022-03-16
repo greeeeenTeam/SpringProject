@@ -28,23 +28,23 @@
 		</div>
 		<div class="form-group">
 		   <label for="exam_question">문제</label>
-		   <input type="text" class="form-control" name="exam_question" id="exam_question" value="<%= question %>">
+		   <input type="text" class="form-control" name="exam_question" id="exam_question" value="<%= question %>" maxlength="150">
 		</div>
 		<div class="form-group">
 		   <label for="ans_1">1번 문항</label>
-		   <input type="text" class="form-control" name="ans_1" id="ans_1" value="<%= ex_1 %>">
+		   <input type="text" class="form-control" name="ans_1" id="ans_1" value="<%= ex_1 %>" maxlength="22">
 		</div>
 		<div class="form-group">
 		   <label for="ans_1">2번 문항</label>
-		   <input type="text" class="form-control" name="ans_2" id="ans_2" value="<%= ex_2 %>">
+		   <input type="text" class="form-control" name="ans_2" id="ans_2" value="<%= ex_2 %>" maxlength="22">
 		</div>
 		<div class="form-group">
 		   <label for="ans_1">3번 문항</label>
-		   <input type="text" class="form-control" name="ans_3" id="ans_3" value="<%= ex_3 %>">
+		   <input type="text" class="form-control" name="ans_3" id="ans_3" value="<%= ex_3 %>" maxlength="22">
 		</div>
 		<div class="form-group">
 		   <label for="ans_1">4번 문항</label>
-		   <input type="text" class="form-control" name="ans_4" id="ans_4" value="<%= ex_4 %>">
+		   <input type="text" class="form-control" name="ans_4" id="ans_4" value="<%= ex_4 %>" maxlength="22">
 		</div>
 		<div class="form-group">
 		   <label for="answer">정답</label>

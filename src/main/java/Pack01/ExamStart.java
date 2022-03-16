@@ -15,7 +15,7 @@ public class ExamStart {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int n=0;
+		int n=3;
 		String sql = "select * from member where cn=?";
 		try {
 			conn = ConnectionProvider.getConnection();
@@ -25,8 +25,18 @@ public class ExamStart {
 			rs = pstmt.executeQuery();
 
 			while(rs.next()){
-				if(cn.equals(rs.getString("cn")) && request.getParameter("user_name").equals(rs.getString("name"))) {
-					n=1;
+				String user_name = rs.getString("name");
+				String user_cn = rs.getString("cn");
+				if(cn.equals(user_cn)) {
+					if(request.getParameter("user_name").equals(user_name)) {
+						n=1;
+						break;
+					} else {
+						n=2;
+						break;
+					}
+				} else {
+					n=3;
 					break;
 				}
 			}
@@ -35,11 +45,18 @@ public class ExamStart {
 		}try{
 			if(pstmt!=null) pstmt.close();
 			if(conn!=null) conn.close();
-
-			if(n>0){
-				HttpSession session = request.getSession();
+			
+			System.out.println("n체크" + n);
+			HttpSession session = request.getSession();
+			if(n==1){
 				session.setAttribute("cn", cn);
 				response.setContentType("text/html;charset=UTF-8");
+				response.sendRedirect("/SpringProject/wait");
+			} else if(n==2) {
+				session.setAttribute("error", "이름과 수험번호가 일치하지 않습니다.");
+				response.sendRedirect("/SpringProject/wait");
+			} else if(n==3) {
+				session.setAttribute("error", "존재하지 않는 수험번호 입니다.");
 				response.sendRedirect("/SpringProject/wait");
 			}
 		}

@@ -9,16 +9,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>이미 시험봄</h1>
+
 	<%
 	ResultSet rs = (ResultSet) request.getAttribute("result");
-	while (rs.next()) {
-		int isPass = rs.getInt("pass");
-		int result = rs.getInt("result");
-		if(isPass == 1){
-			out.println("통과입니다. 맞은개수는"+result+"개");
-		}else {
-			out.println("탈락입니다. 맞은 개수는"+result+"개");
+	if(rs == null) {
+		out.println("시험에 응시하지 않았습니다.");
+	} else {
+		while (rs.next()) {
+			out.println("이미 시험을 응시했습니다.");
+			int isPass = rs.getInt("pass");
+			int result = rs.getInt("result");
+			if(isPass == 1){
+				out.println("통과입니다. 맞은개수는"+result+"개");
+			}else {
+				out.println("탈락입니다. 맞은 개수는"+result+"개");
+			}
 		}
 	}
 %>
