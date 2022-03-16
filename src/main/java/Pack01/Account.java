@@ -168,7 +168,7 @@ public class Account {
 		PreparedStatement pstmt = null;
 		
 		
-		String sql = "INSERT INTO new_test values(null, ?, ?, null, ?, null, ?, null, ?, null, ?, null, 0)";
+		String sql = "INSERT INTO new_test values(null, ?, ?, null, ?, null, ?, null, ?, null, ?, null, 0, now())";
 		try {
 			conn = ConnectionProvider.getConnection();
 			pstmt = conn.prepareStatement(sql);

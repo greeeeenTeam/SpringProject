@@ -45,8 +45,8 @@ public class GetQuestionCon {
 						if(ans == null || ans.isEmpty()) page = i;
 						response.sendRedirect("testing?page=" + page);
 					}
-					response.sendRedirect("/SpringProject/resultPage");
 				}
+				response.sendRedirect("/SpringProject/resultPage");
 //				if(page == 0) {
 //					return "다시 접수해주세요.";
 //				}
