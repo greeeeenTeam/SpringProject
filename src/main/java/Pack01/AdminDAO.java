@@ -83,8 +83,6 @@ public class AdminDAO {
 			return rs;
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			ConnectionProvider.close(rs, pstmt, conn);
 		}
 		
 		return null;
