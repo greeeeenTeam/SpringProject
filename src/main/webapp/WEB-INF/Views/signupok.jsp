@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+h1 {
+	text-align:center;
+	margin-top: 200px;
+}
+</style>
 </head>
 <body>
 	<h1>
