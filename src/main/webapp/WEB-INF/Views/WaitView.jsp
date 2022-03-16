@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>웨잇</h1>
+	<h1>로그인 완료</h1>
 	<a href="/SpringProject/test">
 		<button>시험응시</button>
 	</a>

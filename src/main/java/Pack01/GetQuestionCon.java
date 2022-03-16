@@ -45,8 +45,8 @@ public class GetQuestionCon {
 						if(ans == null || ans.isEmpty()) page = i;
 						response.sendRedirect("testing?page=" + page);
 					}
-					response.sendRedirect("/SpringProject/resultPage");
 				}
+				response.sendRedirect("/SpringProject/resultPage");
 //				if(page == 0) {
 //					return "다시 접수해주세요.";
 //				}
@@ -78,14 +78,14 @@ public class GetQuestionCon {
 //		return "TestView";
 	}
 	
-	@RequestMapping("/result")
-	String getResult(Model model,HttpServletRequest request) {
-		Account dao = new Account();
-		HttpSession session = request.getSession(); 
-		String cn =(String)session.getAttribute("cn");
-		model.addAttribute("result", dao.selectResult(cn));
-		return "ResultView";
-	}
+//	@RequestMapping("/result")
+//	String getResult(Model model,HttpServletRequest request) {
+//		Account dao = new Account();
+//		HttpSession session = request.getSession(); 
+//		String cn =(String)session.getAttribute("cn");
+//		model.addAttribute("result", dao.selectResult(cn));
+//		return "ResultView";
+//	}
 	
 	@RequestMapping(value = "/testing", method = RequestMethod.GET)
 	String getResult(Model model, @RequestParam("page") String page, HttpServletRequest request) {
