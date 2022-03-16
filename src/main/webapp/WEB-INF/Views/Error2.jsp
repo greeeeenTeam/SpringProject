@@ -8,7 +8,7 @@
 <title>에러</title>
 </head>
 <body>
-	<h1>문제를 준비중 입니다.</h1>
-	<p>관리자에게 문의해주세요.</p>
+	<h1>이미 가입한 주민번호 입니다.</h1>
+	수험번호 : <%= (String)request.getAttribute("cn") %>
 </body>
 </html>

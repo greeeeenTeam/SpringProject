@@ -28,8 +28,9 @@ public class GetQuestionCon {
 		String cn =(String)session.getAttribute("cn");
 		// 진행중인지 판별
 		String isInProgress = dao.isInProgress(cn);
+		System.out.println(isInProgress);
 		// 진행중이면 null값 찾아서 해당 페이지로 이동
-		if (isInProgress == "1") {
+		if (isInProgress.equals("1")) {
 			//조인해서 넘겨주기 new_test랑 multiple_questin DAta
 			//model.addAttribute("questionListInProgress", dao.selectQuestionInProgress(cn));
 			// 첫번째 null값 찾기
@@ -44,8 +45,10 @@ public class GetQuestionCon {
 						String ans = null;
 						for(int i = 1; i <= 5; i++) {
 							ans = rs.getString("a" + i);
-							if(ans == null || ans.isEmpty()) page = i;
-							response.sendRedirect("testing?page=" + page);
+							if(ans == null || ans.isEmpty()) {
+								page = i;
+								response.sendRedirect("testing?page=" + page);
+							}
 						}
 					}
 					response.sendRedirect("/SpringProject/resultPage");
@@ -58,7 +61,7 @@ public class GetQuestionCon {
 				e.printStackTrace();
 			}
 		}
-		else if (isInProgress == "2") {
+		else if (isInProgress.equals("2")) {
 			//조인해서 넘겨주기 new_test랑 multiple_questin DAta
 			//model.addAttribute("questionListInProgress", dao.selectQuestionInProgress(cn));
 			// 첫번째 null값 찾기

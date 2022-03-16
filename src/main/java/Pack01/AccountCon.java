@@ -20,18 +20,23 @@ public class AccountCon {
 			@RequestParam(value="user_name") String name,
 	        @RequestParam(value="user_rrn") String rrn,
 	        Model model) {
-		System.out.println("signup");
 		Account dao = new Account();
 		
-		Boolean test = dao.login(name, rrn);
-		if(test) {
+		Integer test = dao.login(name, rrn);
+		if(test == 200) {
 			System.out.println("db update");
+			String cn= dao.showrn(name,rrn);
+			model.addAttribute("cn", cn);
+			return "signupok";
+		} else if(test == 300) {
+			System.out.println("이미 존재 함.");
+			String cn= dao.sameRrn(rrn);
+			model.addAttribute("cn", cn);
+			return  "Error2";
 		}
-		
 		String cn= dao.showrn(name,rrn);
 		model.addAttribute("cn", cn);
 		System.out.println(cn);
-		
 		return "signupok";
 	}
 	

@@ -3,10 +3,11 @@ package Pack01;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 
 public class Account {
-	public Boolean login(String name, String rrn) {
+	public Integer login(String name, String rrn) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "INSERT INTO member values(?, ?, NULL, 0, 0)";
@@ -21,16 +22,43 @@ public class Account {
 			
 			if(rs>=1)
 			{
-				return true;
+				return 200;
 			}
 			
+		}catch (SQLIntegrityConstraintViolationException se) {
+			return 300;
 		}catch (Exception e) {
-
+			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}finally {
 			ConnectionProvider.close(null, pstmt, conn);
 		}
-		return false;
+		return 400;
+	}
+	
+	public String sameRrn(String rrn) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String cn = null;
+		String sql = "SELECT cn FROM member WHERE rrn = ?";
+		try {
+			conn = ConnectionProvider.getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, rrn);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				cn = rs.getString("cn");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}finally {
+			ConnectionProvider.close(null, pstmt, conn);
+		}
+		return cn;
 	}
 	
 	public String showrn(String name, String rrn) {
@@ -51,7 +79,7 @@ public class Account {
 				cn = rs.getString("cn");
 			}
 		}catch (Exception e) {
-
+			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}finally {
 			ConnectionProvider.close(null, pstmt, conn);
@@ -133,6 +161,7 @@ public class Account {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
+				System.out.println("flag: " + rs.getString("flag"));
 				if(rs.getString("flag").equals("1"))	return "1";
 				if(rs.getString("flag").equals("2"))	return "2";
 			}

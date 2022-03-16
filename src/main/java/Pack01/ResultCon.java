@@ -56,20 +56,14 @@ public class ResultCon {
 	      Account dao = new Account();
 	      HttpSession session = request.getSession(); 
 	      String cn =(String)session.getAttribute("cn");
-	      ResultSet rs = dao.selectQuestionInProgress(cn);
-	      try {
-	         while(rs.next()) {
-//	        	 ResultSet test = dao.selectResult(cn);
-//					if(test != null) {
-					model.addAttribute("result", dao.selectResult(cn));
-//					}
-	            }
-	            return "directResultView";
-	      } catch (NumberFormatException e) {
-	         e.printStackTrace();
-	      } catch (SQLException e) {
-	         e.printStackTrace();
-	      }
-	      return null;
+//	      ResultSet rs = dao.selectQuestionInProgress(cn);
+	      model.addAttribute("result", dao.selectResult(cn));
+			/*
+			 * try { while(rs.next()) { // ResultSet test = dao.selectResult(cn); // if(test
+			 * != null) { model.addAttribute("result", dao.selectResult(cn)); // } } return
+			 * "directResultView"; } catch (NumberFormatException e) { e.printStackTrace();
+			 * } catch (SQLException e) { e.printStackTrace(); }
+			 */
+	      return "directResultView";
 	   }
 }

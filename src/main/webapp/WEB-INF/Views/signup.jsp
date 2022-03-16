@@ -125,16 +125,12 @@ input{
         <h3>수험번호 발급</h3>
 
         <label for="user_name">수험자 이름👀</label>
-        <input type="text" placeholder="ex: ○○○" id="user_name" name="user_name">
+        <input type="text" placeholder="ex: ○○○" id="user_name" name="user_name" required>
 
         <label for="user_rrn">수험자 생년월일🎉</label>
-        <input type="text" placeholder="ex: 220314" id="password" maxlength="6"  name="user_rrn">
+        <input type="text" placeholder="ex: 220314" id="password" maxlength="6"  name="user_rrn" required>
 
         <input type="submit" class="submit_btn"> 
-        <div class="social">
-          <div class="go"><i class="fab fa-google"></i>  Google</div>
-          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
-        </div>
     </form>
     </div>
 </body>

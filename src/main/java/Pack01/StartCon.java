@@ -16,16 +16,17 @@ public class StartCon {
 	@RequestMapping(value = "/cnlogin", method = RequestMethod.POST)
 //	String signup(
 	// 로그인 기능
-	void signup(
+	String signup(
 	        @RequestParam(value="user_cn") String cn,
 	        HttpServletRequest request, HttpServletResponse response) {
 		ExamStart dao = new ExamStart();
 		
 		if(request.getParameter("user_name").equals("admin") && request.getParameter("user_cn").equals("admin")) {
 			HttpSession session = request.getSession();
-			session.setAttribute("cn", cn);
+			session.setAttribute("cn", "admin");
 			try {
 				response.sendRedirect("admin");
+				return "admin";
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -36,7 +37,7 @@ public class StartCon {
 			System.out.println("db select");
 		} 
 		//StartDTO dto = new StartDTO(cn);
-//		return "findcn";
+		return "findcn";
 	}
 	
 	@RequestMapping(value = "/cnlogin", method = RequestMethod.GET)
