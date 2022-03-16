@@ -37,6 +37,8 @@ public class ResultCon {
 				if(test) {
 					model.addAttribute("result", dao.selectResult(cn));
 				}
+				dao.updateFlag(cn, "2");	// 시험 종료되면 플래그 2로 올리기
+				System.out.println("flag update");
 				return "ResultView";
 			}
 
